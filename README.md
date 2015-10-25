@@ -1,8 +1,9 @@
 # Recipes
 
-This is the home of the main repository for pakit recipes.
+This is the home of the base recipes for Pakit.
 
-Want to contribute a recipe? Just make a pull request.
+These recipes should work on Linux primarily, may make other
+repositories to contain OS specific overrides.
 
-Eventually should probably make a bot that verifies the recipes on some PRs.
-Until then, please be sure it works before requesting.
+If you want to contribute a recipe, please ensure it works before making a PR.
+Try to dependencies on other recipes or libraries to a minimum.
