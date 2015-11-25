@@ -1,5 +1,7 @@
 # Recipes
 
+[![Travis](https://travis-ci.org/pakit/base_recipes.svg?branch=master)](https://travis-ci.org/pakit/base_recipes)
+
 This is the home of the base recipes for Pakit.
 
 These recipes should work on Linux primarily, may make other
