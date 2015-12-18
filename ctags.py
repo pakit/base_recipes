@@ -29,4 +29,4 @@ class Ctags(Recipe):
 
     def verify(self):
         lines = self.cmd('ctags --version').output()
-        assert lines[0].find('Universal Ctags Development') != -1
+        assert lines[0].find('Universal Ctags') != -1
