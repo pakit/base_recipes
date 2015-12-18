@@ -1,4 +1,6 @@
 """ Formula for building ctags """
+import os
+
 from pakit import Git, Recipe
 
 
@@ -17,7 +19,10 @@ class Ctags(Recipe):
         }
 
     def build(self):
-        self.cmd('autoreconf -fiv')
+        if os.path.exists('autogen.sh'):
+            self.cmd('sh autogen.sh')
+        else:
+            self.cmd('autoreconf -fiv')
         self.cmd('./configure --prefix={prefix}')
         self.cmd('make')
         self.cmd('make install')

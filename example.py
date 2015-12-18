@@ -4,13 +4,13 @@
 # All Recipes must be usable on python 2.7+, use future print if needed
 from __future__ import print_function
 
-# Pakit provides convenience classes, full list available with `pydoc pakit`
-# Import only those you need.
-from pakit import Git, Recipe
-
 # Feel free to use standard libs provided with python 2.7
 # avoid python 3 specific dependencies
 import os
+
+# Pakit provides convenience classes, full list available with `pydoc pakit`
+# Import only those you need.
+from pakit import Git, Recipe
 
 
 # This recipe should be in file 'example.py'

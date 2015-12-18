@@ -1,6 +1,7 @@
 """ Formula for building tmux """
-from pakit import Archive, Git, Recipe
 import os
+
+from pakit import Archive, Git, Recipe
 
 
 class Tmux(Recipe):
@@ -20,9 +21,8 @@ class Tmux(Recipe):
         }
 
     def build(self):
-        if os.path.exists(os.path.join(self.opts['source'], 'autogen.sh')):
+        if os.path.exists('autogen.sh'):
             self.cmd('sh autogen.sh')
-
         self.cmd('./configure --prefix {prefix}')
         self.cmd('make install')
 
