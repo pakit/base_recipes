@@ -18,7 +18,7 @@ EOF
 $user = <<EOF
 # Purely optional & slow, sets up a dev environment
 if [ ! -e ~/.my_scripts ]; then
-    git clone https://github.com/starcraftman/.my_scripts/ ~/.my_scripts
+    git clone --depth 1 https://github.com/starcraftman/.my_scripts/ ~/.my_scripts
     rm ~/.bashrc
     python .my_scripts/SysInstall.py home_save home
     sed --in-place -e "s/Plug 'Valloric.*//" ~/.vimrc
@@ -31,13 +31,23 @@ fi
 # Setup pakit
 rm -rf ~/pakit
 git clone https://github.com/starcraftman/pakit.git ~/pakit
-if [ ! -e ~/.lbashrc ]; then
+if  ! grep 'pakit/bin'  ~/.lbashrc; then
     echo 'Adding pakit to local bashrc.'
-    echo 'export PATH=$HOME/pakit/bin:$PATH' > ~/.lbashrc
+    echo 'export PATH=$HOME/pakit/bin:$PATH' >> ~/.lbashrc
+    echo 'export PYTHONPATH=$HOME/pakit:$PYTHONPATH' >> ~/.lbashrc
 fi
-source ~/.lbashrc
-pip install argparse pyyaml coverage flake8 mock pytest tox
+pip install --upgrade argparse pyyaml coverage flake8 mock pytest tox
 python ~/pakit/setup.py release
+
+# Further setup
+ln -fs /vagrant ~/recipes
+git clone https://github.com/pakit/pakit_tests.git ~/pakit_tests
+if  ! grep 'pakit_tests'  ~/.lbashrc; then
+    echo 'Adding pakit_tests to local bashrc.'
+    echo 'export PATH=$HOME/pakit_tests:$PATH' >> ~/.lbashrc
+fi
+
+source ~/.lbashrc
 EOF
 
 Vagrant.require_version ">= 1.5.0"
