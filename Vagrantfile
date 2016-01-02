@@ -8,11 +8,22 @@
 #   vagrant plugin install vagrant-faster
 # Sets cpu/memory to a good value above default, speeds up VM.
 
+# Dependencies to resolve with recipes:
+#  ack  -> libfile-next-perl
+#  ag   -> libpcre3-dev liblzmadev
+#  doxygen -> bison flex
+#  git  -> tcl-dev gettext
+#  tmux -> libncurses-dev libevent-dev
+#  vim  -> libncurses-dev
+#  vimpager -> sharutils
+#  xz -> libtool-bin
+
 $root = <<EOF
 sudo apt-get update -y
 sudo apt-get install -y build-essential automake autopoint autoconf pkg-config cmake\
- git mercurial vim rar p7zip-full python-dev python-pip  pandoc sphinx-common\
- libyaml-dev libpcre3-dev zlib1g-dev liblzma-dev
+ git mercurial vim rar p7zip-full python-dev python-pip  pandoc sphinx-common libyaml-dev\
+ libpcre3-dev zlib1g-dev liblzma-dev libfile-next-perl tcl-dev libevent-dev sharutils libtool-bin\
+ libncurses-dev bison flex
 EOF
 
 $user = <<EOF
@@ -36,11 +47,13 @@ if  ! grep 'pakit/bin'  ~/.lbashrc; then
     echo 'export PATH=$HOME/pakit/bin:$PATH' >> ~/.lbashrc
     echo 'export PYTHONPATH=$HOME/pakit:$PYTHONPATH' >> ~/.lbashrc
 fi
-pip install --upgrade argparse pyyaml coverage flake8 mock pytest tox
+pip install --upgrade argparse pyyaml coverage flake8 mock pytest pytest-xdist tox
 python ~/pakit/setup.py release
 
 # Further setup
-ln -fs /vagrant ~/recipes
+rm -rf ~/recipes
+cp -r /vagrant ~/recipes
+rm -rf ~/recipes/.tox ~/recipes/.cache ~/recipes/**/*.py
 git clone https://github.com/pakit/pakit_tests.git ~/pakit_tests
 if  ! grep 'pakit_tests'  ~/.lbashrc; then
     echo 'Adding pakit_tests to local bashrc.'
@@ -48,6 +61,9 @@ if  ! grep 'pakit_tests'  ~/.lbashrc; then
 fi
 
 source ~/.lbashrc
+pakit_tests.py  ~/recipes
+echo "To run tests:"
+echo "  py.test -n auto -sv recipes/tests/test_recipes.py""
 EOF
 
 Vagrant.require_version ">= 1.5.0"
