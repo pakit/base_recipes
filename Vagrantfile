@@ -23,7 +23,7 @@ sudo apt-get update -y
 sudo apt-get install -y build-essential automake autopoint autoconf pkg-config cmake\
  git mercurial vim rar p7zip-full python-dev python-pip  pandoc sphinx-common libyaml-dev\
  libpcre3-dev zlib1g-dev liblzma-dev libfile-next-perl tcl-dev libevent-dev sharutils libtool-bin\
- libncurses-dev bison flex
+ libncurses-dev bison flex gettext
 EOF
 
 $user = <<EOF
