@@ -22,7 +22,10 @@ class Vim(Recipe):
 
     def build(self):
         self.cmd('./configure --prefix={prefix} {configure}')
-        self.cmd('make VIMRUNTIMEDIR={prefix}/share/vim/vim74')
+        if self.repo_name == 'unstable':
+            self.cmd('make VIMRUNTIMEDIR={prefix}/share/vim/vim80')
+        else:
+            self.cmd('make VIMRUNTIMEDIR={prefix}/share/vim/vim74')
         self.cmd('make install')
 
     def verify(self):
