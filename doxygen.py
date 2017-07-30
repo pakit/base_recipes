@@ -17,7 +17,7 @@ class Doxygen(Recipe):
         self.src = 'https://github.com/doxygen/doxygen.git'
         self.homepage = self.src
         self.repos = {
-            'stable': Git(self.src, tag='Release_1_8_10'),
+            'stable': Git(self.src, tag='Release_1_8_12'),
             'unstable': Git(self.src),
         }
 

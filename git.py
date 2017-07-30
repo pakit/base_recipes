@@ -12,9 +12,9 @@ class Git(Recipe):
         self.homepage = 'https://git-scm.com'
         self.repos = {
             'stable': Archive('https://www.kernel.org/pub/software/scm/git/'
-                              'git-2.5.3.tar.xz',
-                              hash='124d29d857a1282fd2111cf4a021f156e8bae9'
-                              '17f455b4551b2aea87f0453a1a'),
+                              'git-2.9.4.tar.xz',
+                              hash='6c7e18ce9eb6fffe75704b3fde286c32210e831'
+                              '75e03b75cb08952d5fb319018'),
             'unstable': GitRepo('https://github.com/git/git'),
         }
 
