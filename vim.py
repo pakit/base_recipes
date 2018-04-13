@@ -17,7 +17,7 @@ class Vim(Recipe):
             'unstable': Git(self.src),
         }
         self.opts = {
-            'configure': '--with-features=huge --enable-pythoninterp'
+            'configure': '--with-features=huge --enable-pythoninterp --enable-luainterp'
         }
 
     def build(self):
