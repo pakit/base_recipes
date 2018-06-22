@@ -1,4 +1,5 @@
 """ Formula for building ack """
+import glob
 import os
 import shutil
 
@@ -20,7 +21,6 @@ class Ack(Recipe):
 
     def build(self):
         self.cmd('perl Makefile.PL')
-        self.cmd('make')
         self.cmd('make ack-standalone manifypods')
         ack_bin = os.path.join(self.opts['prefix'], 'bin', 'ack')
         man_dir = os.path.join(self.opts['prefix'], 'share',
@@ -32,8 +32,8 @@ class Ack(Recipe):
                 pass
         shutil.move(os.path.join(self.opts['source'], 'ack-standalone'),
                     ack_bin)
-        shutil.move(os.path.join(self.opts['source'], 'blib', 'man1',
-                                 'ack.1p'), man_dir)
+        for fname in glob.glob(os.path.join(self.opts['source'], 'blib', 'man1', '*')):
+            shutil.move(fname, man_dir)
 
     def verify(self):
         lines = self.cmd('ack --version').output()
