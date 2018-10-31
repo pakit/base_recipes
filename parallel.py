@@ -11,9 +11,10 @@ class Parallel(Recipe):
         self.homepage = 'http://www.gnu.org/software/parallel'
         self.repos = {
             'unstable': Archive('https://ftp.gnu.org/gnu/parallel/'
-                                'parallel-20180322.tar.bz2',
-                                hash='6389ad5318247ea28a8e9ddc9e69bc2713ae5c'
-                                '19e3783edda81da54ff6356497')
+                                'parallel-20181022.tar.bz2',
+                                hash='2e84dee3556cbb8f6a3794f5b21549faffb132'
+                                'db3fc68e2e95922963adcbdbec')
+
         }
         self.repos['stable'] = self.repos['unstable']
 
