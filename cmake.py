@@ -10,10 +10,10 @@ class Cmake(Recipe):
         super(Cmake, self).__init__()
         self.homepage = 'www.cmake.org'
         self.repos = {
-            'stable': Archive('http://www.cmake.org/files/v3.11/'
-                              'cmake-3.11.3.tar.gz',
-                              hash='287135b6beb7ffc1ccd02707271080bbf14c21'
-                              'd80c067ae2c0040e5f3508c39a'),
+            'stable': Archive('https://github.com/Kitware/CMake/releases/download/v3.14.3/'
+                              'cmake-3.14.3.tar.gz',
+                              hash='215d0b64e81307182b29b63e562edf30b'
+                              '3875b834efdad09b3fcb5a7d2f4b632'),
             'unstable': Git('git://cmake.org/cmake.git'),
         }
         self.opts = {
