@@ -17,7 +17,7 @@ class Vim(Recipe):
             'unstable': Git(self.src),
         }
         self.opts = {
-            'configure': '--with-features=huge --enable-pythoninterp --enable-luainterp --with-python3-config-dir="/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu"'
+            'configure': '--with-features=huge --enable-python3interp --enable-luainterp --with-python3-config-dir="/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu"'
         }
 
     def build(self):
