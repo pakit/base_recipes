@@ -17,13 +17,13 @@ class Vim(Recipe):
             'unstable': Git(self.src),
         }
         self.opts = {
-            'configure': '--with-features=huge --enable-pythoninterp --enable-luainterp'
+            'configure': '--with-features=huge --enable-pythoninterp --enable-luainterp --with-python3-config-dir="/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu"'
         }
 
     def build(self):
         self.cmd('./configure --prefix={prefix} {configure}')
         if self.repo_name == 'unstable':
-            self.cmd('make VIMRUNTIMEDIR={prefix}/share/vim/vim81')
+            self.cmd('make VIMRUNTIMEDIR={prefix}/share/vim/vim82')
         else:
             self.cmd('make VIMRUNTIMEDIR={prefix}/share/vim/vim74')
         self.cmd('make install')
