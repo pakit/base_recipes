@@ -10,8 +10,8 @@ class Cmake(Recipe):
         super(Cmake, self).__init__()
         self.homepage = 'www.cmake.org'
         self.repos = {
-            'stable': Archive('https://github.com/Kitware/CMake/releases/download/v3.19.2/cmake-3.19.2.tar.gz',
-                              hash='e3e0fd3b23b7fb13e1a856581078e0776ffa2df4e9d3164039c36d3315e0c7f0'),
+            'stable': Archive('https://github.com/Kitware/CMake/releases/download/v3.23.2/cmake-3.23.2.tar.gz',
+                              hash='f316b40053466f9a416adf981efda41b160ca859e97f6a484b447ea299ff26aa'),
             'unstable': Git('git://cmake.org/cmake.git'),
         }
         self.opts = {
@@ -21,7 +21,7 @@ class Cmake(Recipe):
     def build(self):
         self.cmd('./bootstrap --prefix={prefix} --mandir=share/man '
                  '{bootstrap}')
-        self.cmd('make')
+        self.cmd('make -j')
         self.cmd('make install')
 
     def verify(self):

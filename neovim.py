@@ -18,7 +18,7 @@ class Neovim(Recipe):
         self.repos['stable'] = self.repos['unstable']
 
     def build(self):
-        self.cmd('make CMAKE_EXTRA_FLAGS="-DCMAKE_BUILD_TYPE=RelWithDebInfo '
+        self.cmd('make -j CMAKE_EXTRA_FLAGS="-DCMAKE_BUILD_TYPE=RelWithDebInfo '
                  '-DCMAKE_INSTALL_PREFIX={prefix}"')
         self.cmd('make install')
 
